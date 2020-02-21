@@ -15,8 +15,8 @@ export class EventApiService {
 
   constructor(private _httpClient: HttpClient, private _eventMapper: EventMapper) {}
 
-  public getAll(): Observable<IEventsResponse[]> {
-    return this._httpClient.post<IEventsResponse[]>(`${this._baseUrl}/getEvents`, null);
+  public getAll(): Observable<IEventsResponse> {
+    return this._httpClient.post<IEventsResponse>(`${this._baseUrl}/getEvents`, null);
   }
 
   public getById(id: number): Observable<Event> {
