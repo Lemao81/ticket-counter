@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { IEventResponse, IEventsResponse } from '@interfaces';
 import { EventMapper } from '@mappers';
-import { GetEventRequest, Event } from '@models';
+import { Event, GetEventRequest } from '@models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -24,7 +24,7 @@ export class EventApiService {
 
     return this._httpClient.post<IEventResponse>(`${this._baseUrl}/getEvent`, request).pipe(
       map((response: IEventResponse) => {
-        return this._eventMapper.mapToBo(response?.result?.event);
+        return response.result ? this._eventMapper.mapToBo(response.result.event) : null;
       })
     );
   }

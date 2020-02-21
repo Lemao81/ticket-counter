@@ -1,4 +1,4 @@
-import { IBandDto } from '@interfaces';
+import { IBandDto } from 'app/shared/interfaces';
 
 export interface IEventDto {
   date?: string;

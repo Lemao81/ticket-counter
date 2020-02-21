@@ -1,4 +1,4 @@
-import { Band } from '@models';
+import { Band } from 'app/shared/models';
 
 export class Event {
   date?: Date;

@@ -1,4 +1,4 @@
-import { IEventDto } from '@interfaces';
+import { IEventDto } from 'app/shared/interfaces';
 
 export interface IEventResponse {
   logId?: string;
