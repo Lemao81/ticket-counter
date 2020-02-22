@@ -2,30 +2,24 @@
   background-color: #f48fb1;
 }
 
+.root .row:nth-child(2) {
+  height: calc(100vh - 56px);
+}
+
 .top-navigation {
   background-color: #e6ee9c;
 }
 
 .side-navigation {
   background-color: #81d4fa;
-  height: calc(100vh - 40px);
 }
 
 .page-frame {
   background-color: #bcaaa4;
-  height: calc(100vh - 40px);
 }
 
-.container-fluid {
-  margin: 0px;
-  padding: 0px;
-}
-
-.row {
-  margin: 0px;
-  padding: 0px;
-}
-
+.container-fluid,
+.row,
 .col {
   margin: 0px;
   padding: 0px;
