@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StatusCode } from '@enums';
-import { EventDetailsViewModel } from '@models';
-import { EventApiService } from '@services';
+import { ToastMessage } from '@constants';
+import { Event } from '@models';
+import { EventApiService, ToastService } from '@services';
 
 @Component({
   selector: 'tc-event-list',
@@ -10,16 +10,21 @@ import { EventApiService } from '@services';
 })
 export class EventListComponent implements OnInit {
   @Input()
-  public events: EventDetailsViewModel[];
+  public events: Event[];
 
-  constructor(private _eventApiService: EventApiService) {}
+  constructor(private _eventApiService: EventApiService, private _toastService: ToastService) {}
 
   ngOnInit() {}
 
   private fetchEvents(): void {
-    this._eventApiService.getAll().subscribe(response => {
-      if (!response.statusCode || response.statusCode === StatusCode.Error) {
-      }
-    });
+    this._eventApiService.getAll().subscribe(
+      events => {
+        this.events = events.filter(_ => _.date);
+        if (!this.events.length) {
+          this._toastService.toastInfo(ToastMessage.LOAD_EVENTS_NORESULT);
+        }
+      },
+      _ => this._toastService.toastError(ToastMessage.LOAD_EVENTS_FAIL)
+    );
   }
 }

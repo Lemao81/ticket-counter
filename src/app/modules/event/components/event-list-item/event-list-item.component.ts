@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EventDetailsViewModel } from '@models';
+import { EventItemViewModel } from '@models';
 
 @Component({
   selector: 'tc-event-list-item',
@@ -8,7 +8,7 @@ import { EventDetailsViewModel } from '@models';
 })
 export class EventListItemComponent implements OnInit {
   @Input()
-  public event: EventDetailsViewModel;
+  public event: EventItemViewModel;
 
   constructor() {}
 
