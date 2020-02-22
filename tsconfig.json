@@ -20,6 +20,7 @@
       "@interfaces": ["app/shared/interfaces/index.ts"],
       "@models": ["app/shared/models/index.ts"],
       "@enums": ["app/shared/enums/index.ts"],
+      "@constants": ["app/shared/constants/index.ts"],
       "@pipes": ["app/shared/pipes/index.ts"]
     }
   }
