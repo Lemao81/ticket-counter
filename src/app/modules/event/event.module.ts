@@ -8,6 +8,7 @@ import { EventPageComponent } from './components/event-page/event-page.component
 
 @NgModule({
   declarations: [EventListComponent, EventListItemComponent, EventDetailsComponent, EventPageComponent],
-  imports: [SharedModule]
+  imports: [SharedModule],
+  exports: [EventListComponent]
 })
 export class EventModule {}

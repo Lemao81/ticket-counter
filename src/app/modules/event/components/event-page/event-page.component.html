@@ -1,1 +1,10 @@
-<p>event-page works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div [className]="isShowingDetails ? 'col-8' : 'col'">
+      <tc-event-list></tc-event-list>
+    </div>
+    <div *ngIf="isShowingDetails" class="col-4">
+      <tc-event-details></tc-event-details>
+    </div>
+  </div>
+</div>

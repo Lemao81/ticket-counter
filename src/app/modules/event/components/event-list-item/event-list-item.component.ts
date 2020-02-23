@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EventItemViewModel } from '@models';
+import { Event } from '@models';
+
+import { EventCommunicationService } from '../../services/event-communication.service';
 
 @Component({
   selector: 'tc-event-list-item',
@@ -8,9 +10,13 @@ import { EventItemViewModel } from '@models';
 })
 export class EventListItemComponent implements OnInit {
   @Input()
-  public event: EventItemViewModel;
+  public event: Event;
 
-  constructor() {}
+  constructor(private _eventCommunicationService: EventCommunicationService) {}
 
   ngOnInit() {}
+
+  public onEventItemClicked(event: Event) {
+    this._eventCommunicationService.emitEventItemClicked(event);
+  }
 }

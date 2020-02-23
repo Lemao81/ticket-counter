@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastMessage } from '@constants';
 import { Event } from '@models';
 import { EventApiService, ToastService } from '@services';
@@ -9,22 +9,27 @@ import { EventApiService, ToastService } from '@services';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-  @Input()
   public events: Event[];
 
   constructor(private _eventApiService: EventApiService, private _toastService: ToastService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchEvents();
+  }
 
   private fetchEvents(): void {
     this._eventApiService.getAll().subscribe(
       events => {
-        this.events = events.filter(_ => _.date);
+        this.events = events.filter(_ => _.date).sort(this.sortEvents);
         if (!this.events.length) {
           this._toastService.toastInfo(ToastMessage.LOAD_EVENTS_NORESULT);
         }
       },
       _ => this._toastService.toastError(ToastMessage.LOAD_EVENTS_FAIL)
     );
+  }
+
+  private sortEvents(first: Event, second: Event) {
+    return first.date.getTime() - second.date.getTime();
   }
 }

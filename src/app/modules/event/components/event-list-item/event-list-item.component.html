@@ -1,9 +1,9 @@
-<div class="card shadow-sm">
+<div class="card shadow animated fadeIn m-3" (click)="onEventItemClicked(event)">
   <div class="card-body">
-    <h5 class="card-title">{{ event.bandName }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ event.motto }}</h6>
+    <h4 class="card-title">{{ event.band }}</h4>
+    <h5 class="card-subtitle mb-2 text-muted">{{ event.motto }}</h5>
   </div>
   <div class="card-footer">
-    <p *ngIf="event.date">{{ event.date }}</p>
+    <h6 *ngIf="event.date">{{ event.date | date: 'short' }}</h6>
   </div>
 </div>
