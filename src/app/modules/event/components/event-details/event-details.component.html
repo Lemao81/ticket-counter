@@ -6,4 +6,7 @@
   <tc-info-field [header]="'Vorbands'" [content]="eventDetails.vorbands | commaSeparate"></tc-info-field>
   <tc-info-field [header]="'Website'" [content]="eventDetails.homepage" [isUrl]="true"></tc-info-field>
   <tc-info-field [header]="'Datum'" [content]="eventDetails.date | date: 'short'"></tc-info-field>
+  <div class="full-size center-h">
+    <button type="button" class="btn btn-primary" (click)="navigateToOrderPage()">Ticket bestellen</button>
+  </div>
 </div>

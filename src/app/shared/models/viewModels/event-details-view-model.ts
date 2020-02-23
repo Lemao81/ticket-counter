@@ -1,4 +1,5 @@
 export class EventDetailsViewModel {
+  id: number;
   date: Date;
   band: string;
   motto: string;

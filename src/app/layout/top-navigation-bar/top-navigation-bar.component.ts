@@ -10,6 +10,6 @@ export class TopNavigationBarComponent {
   constructor(private _router: Router) {}
 
   public navigateToBase(): void {
-    this._router.navigateByUrl('/');
+    this._router.navigate(['/']);
   }
 }

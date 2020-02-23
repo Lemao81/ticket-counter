@@ -1,0 +1,42 @@
+<h2>Ticketbestellung</h2>
+<form class="mt-4" novalidate [formGroup]="orderForm" (ngSubmit)="checkForm()">
+  <div class="form-group">
+    <label class="font-weight-bold">Anrede</label>
+    <select class="form-control" formControlName="title">
+      <option>Herr</option>
+      <option>Frau</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold required">Vorname</label>
+    <input type="text" class="form-control" formControlName="firstName" placeholder="Vorname" />
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold required">Nachname</label>
+    <input type="text" class="form-control" formControlName="lastName" placeholder="Nachname" />
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold required">Email-Adresse</label>
+    <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold required">Geburtsdatum</label>
+    <input type="text" class="form-control" formControlName="birthDate" placeholder="Geburtsdatum" bsDatepicker />
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold">Anzahl</label>
+    <input type="number" min="1" max="5" class="form-control" formControlName="amount" />
+  </div>
+  <div class="form-group">
+    <div>
+      <label class="font-weight-bold">Bezahlmethode</label>
+    </div>
+    <div class="btn-group" btnRadioGroup formControlName="payment">
+      <button btnRadio="prepayment" class="btn btn-primary">Vorkasse</button>
+      <button btnRadio="paypal" class="btn btn-primary" [attr.disabled]="isPayPalDisabled">Paypal</button>
+    </div>
+  </div>
+  <div class="full-size center-h mt-5">
+    <button type="submit" class="btn btn-primary">Jetzt bestellen</button>
+  </div>
+</form>

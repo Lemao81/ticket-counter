@@ -1,8 +1,8 @@
 import 'automapper-ts';
 
 import { Injectable } from '@angular/core';
-import { IBandDto, IApiMapper } from 'app/shared/interfaces';
-import { Band } from 'app/shared/models';
+import { IApiMapper, IBandDto } from '@interfaces';
+import { Band } from '@models';
 
 @Injectable({
   providedIn: 'root'
