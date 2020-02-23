@@ -1,12 +1,9 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{ eventDetails.bandName }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ eventDetails.motto }}</h6>
-    <p class="card-text">{{ eventDetails.description }}</p>
-    <p class="mt-1" *ngIf="eventDetails.vorbands.length">Vorbands: {{ eventDetails.vorbands | commaSeparate }}</p>
-    <a class="mt-2" href="#" class="card-link">{{ eventDetails.homepage }}</a>
-  </div>
-  <div class="card-footer">
-    <p *ngIf="eventDetails.date">{{ eventDetails.date }}</p>
-  </div>
+<div class="event-details">
+  <button type="button" class="btn btn-secondary float-right" (click)="onCloseDetailsClicked()">X</button>
+  <tc-info-field [header]="'Band'" [content]="eventDetails.band"></tc-info-field>
+  <tc-info-field [header]="'Motto'" [content]="eventDetails.motto"></tc-info-field>
+  <tc-info-field [header]="'Beschreibung'" [content]="eventDetails.description"></tc-info-field>
+  <tc-info-field [header]="'Vorbands'" [content]="eventDetails.vorbands | commaSeparate"></tc-info-field>
+  <tc-info-field [header]="'Website'" [content]="eventDetails.homepage" [isUrl]="true"></tc-info-field>
+  <tc-info-field [header]="'Datum'" [content]="eventDetails.date | date: 'short'"></tc-info-field>
 </div>

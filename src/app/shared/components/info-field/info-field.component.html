@@ -1,0 +1,5 @@
+<div class="info-field">
+  <h5 *ngIf="header">{{ header }}</h5>
+  <p *ngIf="!isUrl">{{ content }}</p>
+  <a *ngIf="isUrl" [attr.href]="content">{{ content }}</a>
+</div>

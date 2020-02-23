@@ -1,16 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventDetailsViewModel } from '@models';
+
+import { EventCommunicationService } from '../../services/event-communication.service';
 
 @Component({
   selector: 'tc-event-details',
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss']
 })
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent {
   @Input()
   public eventDetails: EventDetailsViewModel;
 
-  constructor() {}
+  constructor(private _eventCommunicationService: EventCommunicationService) {}
 
-  ngOnInit() {}
+  public onCloseDetailsClicked() {
+    this._eventCommunicationService.emitCloseDetailsClicked();
+  }
 }

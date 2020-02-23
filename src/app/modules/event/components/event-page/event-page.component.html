@@ -3,8 +3,8 @@
     <div [className]="isShowingDetails ? 'col-8' : 'col'">
       <tc-event-list></tc-event-list>
     </div>
-    <div *ngIf="isShowingDetails" class="col-4">
-      <tc-event-details></tc-event-details>
+    <div *ngIf="isShowingDetails" class="col-4 animated slideInRight event-details shadow-sm">
+      <tc-event-details [eventDetails]="eventDetails"></tc-event-details>
     </div>
   </div>
 </div>

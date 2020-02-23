@@ -1,6 +1,6 @@
 export class EventDetailsViewModel {
   date: Date;
-  bandName: string;
+  band: string;
   motto: string;
   description: string;
   vorbands: string[];

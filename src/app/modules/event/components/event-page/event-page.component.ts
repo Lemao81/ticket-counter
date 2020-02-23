@@ -1,4 +1,4 @@
-import { Component, OnDestroy, NgZone } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { EventDetailsMapper } from '@mappers';
 import { Event, EventDetailsViewModel } from '@models';
 import { Subscription } from 'rxjs';
@@ -14,17 +14,25 @@ export class EventPageComponent implements OnDestroy {
   private subscriptions = new Subscription();
 
   public isShowingDetails: boolean;
-  public detailsViewModel: EventDetailsViewModel;
+  public eventDetails: EventDetailsViewModel;
 
   constructor(_eventCommunicationService: EventCommunicationService, private _eventDetailsMapper: EventDetailsMapper) {
     this.subscriptions.add(
       _eventCommunicationService.eventItemClicked$.subscribe(event => this.onEventItemClicked.bind(this)(event))
     );
+    this.subscriptions.add(
+      _eventCommunicationService.closeDetailsClicked$.subscribe(_ => this.onCloseDetailsClicked.bind(this)())
+    );
   }
 
   public onEventItemClicked(event: Event) {
-    this.detailsViewModel = this._eventDetailsMapper.mapToDetails(event);
+    this.eventDetails = this._eventDetailsMapper.mapToDetails(event);
     this.isShowingDetails = true;
+  }
+
+  public onCloseDetailsClicked() {
+    this.isShowingDetails = false;
+    this.eventDetails = null;
   }
 
   public ngOnDestroy(): void {
