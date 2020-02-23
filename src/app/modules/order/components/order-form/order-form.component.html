@@ -9,23 +9,70 @@
   </div>
   <div class="form-group">
     <label class="font-weight-bold required">Vorname</label>
-    <input type="text" class="form-control" formControlName="firstName" placeholder="Vorname" />
+    <input
+      type="text"
+      class="form-control"
+      formControlName="firstName"
+      placeholder="Vorname"
+      tcErrorDisplay
+      [tcForm]="orderForm"
+      [tcName]="'firstName'"
+    />
+    <small></small>
   </div>
   <div class="form-group">
     <label class="font-weight-bold required">Nachname</label>
-    <input type="text" class="form-control" formControlName="lastName" placeholder="Nachname" />
+    <input
+      type="text"
+      class="form-control"
+      formControlName="lastName"
+      placeholder="Nachname"
+      tcErrorDisplay
+      [tcForm]="orderForm"
+      [tcName]="'lastName'"
+    />
+    <small></small>
   </div>
   <div class="form-group">
     <label class="font-weight-bold required">Email-Adresse</label>
-    <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+    <input
+      type="email"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email"
+      tcErrorDisplay
+      [tcForm]="orderForm"
+      [tcName]="'email'"
+    />
+    <small></small>
   </div>
   <div class="form-group">
     <label class="font-weight-bold required">Geburtsdatum</label>
-    <input type="text" class="form-control" formControlName="birthDate" placeholder="Geburtsdatum" bsDatepicker />
+    <input
+      type="text"
+      class="form-control"
+      formControlName="birthDate"
+      placeholder="Geburtsdatum"
+      bsDatepicker
+      tcErrorDisplay
+      [tcForm]="orderForm"
+      [tcName]="'birthDate'"
+    />
+    <small></small>
   </div>
   <div class="form-group">
     <label class="font-weight-bold">Anzahl</label>
-    <input type="number" min="1" max="5" class="form-control" formControlName="amount" />
+    <input
+      type="number"
+      min="1"
+      max="5"
+      class="form-control"
+      formControlName="amount"
+      tcErrorDisplay
+      [tcForm]="orderForm"
+      [tcName]="'amount'"
+    />
+    <small></small>
   </div>
   <div class="form-group">
     <div>

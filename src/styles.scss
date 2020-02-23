@@ -21,3 +21,11 @@ body {
 label.required::after {
   content: '*';
 }
+
+input.invalid {
+  border-left: 5px solid crimson;
+}
+
+.invalid {
+  color: crimson;
+}

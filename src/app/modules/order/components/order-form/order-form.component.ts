@@ -39,14 +39,16 @@ export class OrderFormComponent implements OnInit {
   }
 
   public checkForm(): void {
-    if (this.orderForm.pristine) {
+    if (this.orderForm.untouched) {
       this._toastService.toastInfo(ToastMessage.ORDER_FORM_UNTOUCHED);
-    } else if (this.orderForm.dirty && this.orderForm.invalid) {
+    } else if (this.orderForm.touched && this.orderForm.invalid) {
       this._toastService.toastInfo(ToastMessage.ORDER_FORM_INVALID);
     } else {
       this.performOrder();
     }
   }
 
-  private performOrder(): void {}
+  private performOrder(): void {
+    this._toastService.toastSuccess(ToastMessage.ORDER_SUBMITTED);
+  }
 }

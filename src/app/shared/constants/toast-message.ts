@@ -3,4 +3,5 @@ export class ToastMessage {
   public static readonly LOAD_EVENTS_NORESULT = 'Keine anstehenden Veranstaltungen';
   public static readonly ORDER_FORM_INVALID = 'Das Formular enthält noch ungültige Angaben';
   public static readonly ORDER_FORM_UNTOUCHED = 'Bitte füllen Sie das Bestellformular aus';
+  public static readonly ORDER_SUBMITTED = 'Bestellung wurde getätigt';
 }

@@ -11,6 +11,7 @@ export function ageOverHundredValidator(control: AbstractControl): { [key: strin
   const birthDate = moment(dateString);
   const now = moment();
   const difference = now.diff(birthDate, 'years');
+  const error = { [errorKey]: validationErrorMessageDictionary[errorKey] };
 
-  return difference <= 100 ? null : { [errorKey]: validationErrorMessageDictionary[errorKey] };
+  return difference <= 100 ? null : error;
 }
