@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { ErrorMessage } from '@constants';
 import { StatusCode } from '@enums';
 import { environment } from '@environment';
-import { IEventResponse, IEventsResponse } from '@interfaces';
+import { IEventResponse, IEventsResponse, ILogger } from '@interfaces';
 import { EventMapper } from '@mappers';
 import { Event, GetEventRequest } from '@models';
+import { LOGGER } from '@tokens';
 import { Observable, of, throwError } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { catchError, mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +16,22 @@ import { mergeMap } from 'rxjs/operators';
 export class EventApiService {
   private _baseUrl = environment.apiBaseUrl + '/events';
 
-  constructor(private _httpClient: HttpClient, private _eventMapper: EventMapper) {}
+  constructor(
+    private _httpClient: HttpClient,
+    private _eventMapper: EventMapper,
+    @Inject(LOGGER) private _logger: ILogger
+  ) {}
 
   public getAll(): Observable<Event[]> {
     return this._httpClient.post<IEventsResponse>(`${this._baseUrl}/getEvents`, null).pipe(
       mergeMap((response: IEventsResponse) => {
-        if (response.statusCode !== StatusCode.Ok || !response.result) {
-          return throwError(new Error());
+        if (response.StatusCode !== StatusCode.Ok || !response.Result) {
+          return throwError(new Error(ErrorMessage.STATUS_NOK_OR_NORESULT));
         } else {
-          return of(response.result.events.map(_ => this._eventMapper.mapToBo(_)));
+          return of(response.Result.events.map(_ => this._eventMapper.mapToBo(_)));
         }
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -34,11 +41,19 @@ export class EventApiService {
     return this._httpClient.post<IEventResponse>(`${this._baseUrl}/getEvent`, request).pipe(
       mergeMap((response: IEventResponse) => {
         if (response.statusCode !== StatusCode.Ok || !response.result) {
-          return throwError(new Error());
+          return throwError(new Error(ErrorMessage.STATUS_NOK_OR_NORESULT));
         } else {
           return of(this._eventMapper.mapToBo(response.result.event));
         }
-      })
+      }),
+      catchError(this.handleError)
     );
+  }
+
+  private handleError(error: any, _: any): Observable<never> {
+    console.error(error);
+    // this._logger.logError(error);
+
+    return throwError(error);
   }
 }
