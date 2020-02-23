@@ -21,10 +21,11 @@ export class EventDetailsComponent {
   }
 
   public navigateToOrderPage() {
-    const queryParams = {};
-    queryParams[QueryParam.ID] = this.eventDetails.id;
-    queryParams[QueryParam.BAND] = this.eventDetails.band;
-    queryParams[QueryParam.DATE] = this.eventDetails.date.toJSON();
+    const queryParams = {
+      [QueryParam.ID]: this.eventDetails.id,
+      [QueryParam.BAND]: this.eventDetails.band,
+      [QueryParam.DATE]: this.eventDetails.date.toJSON()
+    };
     this._router.navigate(['/page/order'], { queryParams });
   }
 }

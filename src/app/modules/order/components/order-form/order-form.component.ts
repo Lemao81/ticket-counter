@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParam, ToastMessage } from '@constants';
 import { ToastService } from '@services';
+import { containsNoNumberValidator, minimumAgeValidator, ageOverHundredValidator } from '@validators';
 
 @Component({
   selector: 'tc-order-form',
@@ -20,10 +21,10 @@ export class OrderFormComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute, private _toastService: ToastService, formBuilder: FormBuilder) {
     this.orderForm = formBuilder.group({
       title: ['Herr'],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required, containsNoNumberValidator]],
+      lastName: ['', [Validators.required, containsNoNumberValidator]],
       email: ['', [Validators.required, Validators.email]],
-      birthDate: ['', [Validators.required]],
+      birthDate: ['', [Validators.required, minimumAgeValidator, ageOverHundredValidator]],
       amount: [1, [Validators.min(1), Validators.max(5)]],
       payment: ['prepayment']
     });
