@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CommaSeparatingPipe } from '@pipes';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, CommaSeparatingPipe],
-  exports: [CommonModule, CommaSeparatingPipe]
+  declarations: [CommaSeparatingPipe],
+  imports: [CommonModule, HttpClientModule],
+  exports: [CommonModule, CommaSeparatingPipe, HttpClientModule]
 })
 export class SharedModule {}

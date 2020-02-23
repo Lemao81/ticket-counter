@@ -1,10 +1,10 @@
-import { IEventDto } from '../dtos/ievent-dto';
+import { IEventDto } from '@interfaces';
 
 export interface IEventsResponse {
-  logId?: string;
-  statusCode?: string;
-  meldungen?: string[];
-  result?: {
+  LogId?: string;
+  StatusCode?: string;
+  Meldungen?: string[];
+  Result?: {
     events?: IEventDto[];
   };
 }
