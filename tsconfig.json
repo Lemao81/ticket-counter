@@ -18,6 +18,7 @@
       "@environment": ["environments/environment.ts"],
       "@services": ["app/core/services/index.ts"],
       "@mappers": ["app/core/mappers/index.ts"],
+      "@tokens": ["app/core/injection-tokens.ts"],
       "@interfaces": ["app/shared/interfaces/index.ts"],
       "@models": ["app/shared/models/index.ts"],
       "@enums": ["app/shared/enums/index.ts"],
