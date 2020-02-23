@@ -29,11 +29,19 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/automapper-ts/dist/automapper.min.js"],
             "es5BrowserSupport": true
           },
           "configurations": {
-            "production": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -69,8 +77,11 @@
             "browserTarget": "ticket-counter:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "ticket-counter:build:production"
+            "dev": {
+              "browserTarget": "ticket-counter:build:dev"
+            },
+            "prod": {
+              "browserTarget": "ticket-counter:build:prod"
             }
           }
         },
@@ -113,8 +124,8 @@
             "devServerTarget": "ticket-counter:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "ticket-counter:serve:production"
+            "prod": {
+              "devServerTarget": "ticket-counter:serve:prod"
             }
           }
         },
