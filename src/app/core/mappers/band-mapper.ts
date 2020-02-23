@@ -1,18 +1,17 @@
 import 'automapper-ts';
 
 import { Injectable } from '@angular/core';
-import { IBandDto, IMapper } from 'app/shared/interfaces';
+import { IBandDto, IApiMapper } from 'app/shared/interfaces';
 import { Band } from 'app/shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BandMapper implements IMapper<IBandDto, Band> {
+export class BandMapper implements IApiMapper<IBandDto, Band> {
   constructor() {
     automapper
       .createMap('IBandDto', 'Band')
-      .forMember('name', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('band'))
-      .convertToType(Band);
+      .forMember('name', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('band'));
   }
 
   public mapToBo(dto: IBandDto): Band {

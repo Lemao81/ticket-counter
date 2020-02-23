@@ -1,26 +1,26 @@
 import 'automapper-ts';
 
 import { Injectable } from '@angular/core';
-import { IEventDto, IMapper } from 'app/shared/interfaces';
-import { BandMapper } from '@mappers';
+import { IEventDto, IApiMapper } from 'app/shared/interfaces';
 import { Event } from 'app/shared/models';
+
+import { BandMapper } from './band-mapper';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventMapper implements IMapper<IEventDto, Event> {
+export class EventMapper implements IApiMapper<IEventDto, Event> {
   constructor(private _bandMapper: BandMapper) {
     automapper
       .createMap('IEventDto', 'Event')
       .forSourceMember('date', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.ignore())
-      .forSourceMember('vorbands', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.ignore())
-      .convertToType(Event);
+      .forSourceMember('vorbands', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.ignore());
   }
 
   public mapToBo(dto: IEventDto): Event {
     const bo: Event = automapper.map('IEventDto', 'Event', dto);
     bo.date = dto.date ? new Date(dto.date) : null;
-    bo.vorbands = dto.vorbands.map(_ => this._bandMapper.mapToBo(_));
+    bo.vorbands = dto.vorbands ? dto.vorbands.map(_ => this._bandMapper.mapToBo(_)) : [];
 
     return bo;
   }
