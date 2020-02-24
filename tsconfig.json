@@ -26,5 +26,9 @@
       "@pipes": ["app/shared/pipes/index.ts"],
       "@validators": ["app/shared/validators/index.ts"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "skipMetadataEmit": true
   }
 }

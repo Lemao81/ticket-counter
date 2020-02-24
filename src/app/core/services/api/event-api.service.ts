@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { ErrorMessage } from '@constants';
 import { StatusCode } from '@enums';
 import { environment } from '@environment';
@@ -19,7 +19,7 @@ export class EventApiService {
   constructor(
     private _httpClient: HttpClient,
     private _eventMapper: EventMapper,
-    @Inject(LOGGER) private _logger: ILogger
+    @Inject(LOGGER) @Optional() private _logger: ILogger
   ) {}
 
   public getAll(): Observable<Event[]> {
@@ -52,7 +52,6 @@ export class EventApiService {
 
   private handleError(error: any, _: any): Observable<never> {
     console.error(error);
-    // this._logger.logError(error);
 
     return throwError(error);
   }

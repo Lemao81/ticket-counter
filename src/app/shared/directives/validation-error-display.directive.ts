@@ -6,24 +6,23 @@ import { ValidationMessage } from '@constants';
   selector: '[tcErrorDisplay]'
 })
 export class ValidationErrorDisplayDirective implements AfterViewInit {
-  private nativeElement: any;
+  private nativeElement: HTMLElement;
   private control: AbstractControl;
   private displayElement: HTMLElement;
 
   @Input('tcForm')
   public form: FormGroup;
-  @Input('tcName')
-  public controlName: string;
 
   constructor(elementRef: ElementRef) {
-    this.nativeElement = elementRef.nativeElement;
+    this.nativeElement = elementRef.nativeElement as HTMLElement;
   }
 
   public ngAfterViewInit(): void {
-    this.control = this.form.get(this.controlName);
+    const formControlName = this.nativeElement.getAttribute('formControlName');
+    this.control = this.form.get(formControlName);
     if (this.control) {
-      (this.nativeElement as HTMLElement).addEventListener('change', () => this.onChange());
-      this.displayElement = (this.nativeElement as HTMLElement).nextSibling as HTMLElement;
+      this.nativeElement.addEventListener('change', () => this.onChange());
+      this.displayElement = this.nativeElement.nextSibling as HTMLElement;
       if (this.displayElement && this.displayElement.classList) {
         this.displayElement.classList.add('invalid');
       }

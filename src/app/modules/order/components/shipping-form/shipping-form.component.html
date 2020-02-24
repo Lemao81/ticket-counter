@@ -1,0 +1,16 @@
+<h2>Lieferaddresse</h2>
+<form class="mt-4" novalidate [formGroup]="addressForm" (ngSubmit)="checkForm()">
+  <tc-text-form-field [label]="'c/o'" [controlName]="'co'" [placeHolder]="'c/o'"></tc-text-form-field>
+  <tc-text-form-field [label]="'Postfach'" [controlName]="'postbox'" [placeHolder]="'Postfach'"></tc-text-form-field>
+  <div class="form-row">
+    <div class="form-group col-10">
+      <label class="font-weight-bold">Strasse</label>
+      <input type="text" class="form-control" formControlName="street" placeholder="Strasse" />
+    </div>
+    <div class="form-group col-2">
+      <label class="font-weight-bold">Hausnummer</label>
+      <input type="text" class="form-control" formControlName="streetnumber" placeholder="Hausnummer" />
+    </div>
+  </div>
+  <tc-zip-location></tc-zip-location>
+</form>
