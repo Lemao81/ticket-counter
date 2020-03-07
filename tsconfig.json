@@ -24,7 +24,8 @@
       "@enums": ["app/shared/enums/index.ts"],
       "@constants": ["app/shared/constants/index.ts"],
       "@pipes": ["app/shared/pipes/index.ts"],
-      "@validators": ["app/shared/validators/index.ts"]
+      "@validators": ["app/shared/validators/index.ts"],
+      "@rxoperators": ["app/shared/rxoperators/index.ts"]
     }
   },
   "angularCompilerOptions": {

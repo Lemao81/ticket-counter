@@ -25,12 +25,12 @@ export class EventPageComponent implements OnDestroy {
     );
   }
 
-  public onEventItemClicked(event: Event) {
+  public onEventItemClicked(event: Event): void {
     this.eventDetails = this._eventDetailsMapper.mapToDetails(event);
     this.isShowingDetails = true;
   }
 
-  public onCloseDetailsClicked() {
+  public onCloseDetailsClicked(): void {
     this.isShowingDetails = false;
     this.eventDetails = null;
   }

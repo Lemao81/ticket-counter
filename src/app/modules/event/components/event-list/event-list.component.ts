@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastMessage } from '@constants';
 import { Event } from '@models';
+import { filterRequiredProperties, sortByDate } from '@rxoperators';
 import { EventApiService, ToastService } from '@services';
+
+import { nameof } from '../../../../../../node_modules/ts-simple-nameof/src/nameof';
 
 @Component({
   selector: 'tc-event-list',
@@ -13,23 +16,22 @@ export class EventListComponent implements OnInit {
 
   constructor(private _eventApiService: EventApiService, private _toastService: ToastService) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.fetchEvents();
   }
 
   private fetchEvents(): void {
-    this._eventApiService.getAll().subscribe(
-      events => {
-        this.events = events.filter(_ => _.date).sort(this.sortEvents);
-        if (!this.events.length) {
-          this._toastService.toastInfo(ToastMessage.LOAD_EVENTS_NORESULT);
-        }
-      },
-      _ => this._toastService.toastError(ToastMessage.LOAD_EVENTS_FAIL)
-    );
-  }
-
-  private sortEvents(first: Event, second: Event) {
-    return first.date.getTime() - second.date.getTime();
+    this._eventApiService
+      .getAll()
+      .pipe(filterRequiredProperties(nameof<Event>(_ => _.date)), sortByDate())
+      .subscribe(
+        events => {
+          this.events = events;
+          if (!this.events.length) {
+            this._toastService.toastInfo(ToastMessage.LOAD_EVENTS_NORESULT);
+          }
+        },
+        _ => this._toastService.toastError(ToastMessage.LOAD_EVENTS_FAIL)
+      );
   }
 }

@@ -5,3 +5,4 @@ export * from './responses/ievents-response';
 export * from './responses/iapi-response';
 export * from './iapi-mapper';
 export * from './ilogger';
+export * from './idateable';
