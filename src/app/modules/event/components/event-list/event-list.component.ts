@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastMessage } from '@constants';
 import { Event } from '@models';
-import { filterRequiredProperties, sortByDate } from '@rxoperators';
+import { filterRequiredProperties, logItem, sortByDate } from '@rxoperators';
 import { EventApiService, ToastService } from '@services';
 
 import { nameof } from '../../../../../../node_modules/ts-simple-nameof/src/nameof';
@@ -23,7 +23,13 @@ export class EventListComponent implements OnInit {
   private fetchEvents(): void {
     this._eventApiService
       .getAll()
-      .pipe(filterRequiredProperties(nameof<Event>(_ => _.date)), sortByDate())
+      .pipe(
+        logItem('begin'),
+        filterRequiredProperties(nameof<Event>(_ => _.date)),
+        logItem('afterFilter'),
+        sortByDate(),
+        logItem('afterSort')
+      )
       .subscribe(
         events => {
           this.events = events;
