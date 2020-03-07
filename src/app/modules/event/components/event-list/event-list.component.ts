@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastMessage } from '@constants';
 import { Event } from '@models';
-import { filterRequiredProperties, logItem, sortByDate } from '@rxoperators';
+import { filterPreviewPeriod, filterRequiredProperties, logItem, sortByDate } from '@rxoperators';
 import { EventApiService, ToastService } from '@services';
+import * as moment from 'moment';
 
 import { nameof } from '../../../../../../node_modules/ts-simple-nameof/src/nameof';
 
@@ -26,9 +27,11 @@ export class EventListComponent implements OnInit {
       .pipe(
         logItem('begin'),
         filterRequiredProperties(nameof<Event>(_ => _.date)),
-        logItem('afterFilter'),
+        logItem('afterPropertyFilter'),
+        filterPreviewPeriod(moment.duration(3, 'months')),
+        logItem('afterPreviewFilter'),
         sortByDate(),
-        logItem('afterSort')
+        logItem('afterSorting')
       )
       .subscribe(
         events => {

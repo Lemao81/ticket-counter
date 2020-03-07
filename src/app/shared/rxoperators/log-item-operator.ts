@@ -4,15 +4,11 @@ import { tap } from 'rxjs/operators';
 export function logItem<T>(tag: string = ''): (source: Observable<T>) => Observable<T> {
   return tap(
     item => {
-      if (tag) {
-        console.log(tag + ':');
-      }
+      logTag();
       console.log(item);
     },
     error => {
-      if (tag) {
-        console.log(tag + ':');
-      }
+      logTag();
       console.error(error);
     },
     () => {
@@ -20,4 +16,10 @@ export function logItem<T>(tag: string = ''): (source: Observable<T>) => Observa
       console.log(`stream ${tagInsert} completed`);
     }
   );
+
+  function logTag() {
+    if (tag) {
+      console.log(tag + ':');
+    }
+  }
 }
