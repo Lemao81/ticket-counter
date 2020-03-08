@@ -74,8 +74,8 @@
       <label class="font-weight-bold">Bezahlmethode</label>
     </div>
     <div class="btn-group" btnRadioGroup formControlName="payment">
-      <button btnRadio="prepayment" class="btn btn-primary">Vorkasse</button>
-      <button btnRadio="paypal" class="btn btn-primary" [attr.disabled]="isPayPalDisabled">Paypal</button>
+      <button type="button" btnRadio="prepayment" class="btn btn-primary">Vorkasse</button>
+      <button type="button" btnRadio="paypal" class="btn btn-primary" [attr.disabled]="isPayPalDisabled">Paypal</button>
     </div>
   </div>
   <div class="full-size center-h mt-5">
